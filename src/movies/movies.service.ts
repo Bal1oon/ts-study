@@ -1,6 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Movie } from './entities/movie.entity';
-import { NotFoundError } from 'rxjs';
 
 @Injectable()
 export class MoviesService {
