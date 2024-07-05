@@ -1,34 +1,33 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { MoviesService } from './movies.service';
+import { Movie } from './entities/movie.entity';
 
 @Controller('movies')   // url의 Entry Point를 컨트롤 함
 export class MoviesController {
-    @Get()
-    getAll() {
-        return "This will return all movies";
-    }
+    constructor(private readonly moviesService: MoviesService) {}
 
-    @Get("/search") // @Get("/:id") 보다 아래에 있으면 search를 id로 판단하기 때문에 위에 배치
-    search(@Query("year") searchingYear: string) {
-        return `We are searching for a movie made after: ${searchingYear}`;
+    @Get()
+    getAll(): Movie[] {
+        return this.moviesService.getAll();
     }
 
     @Get("/:id")
-    getOne(@Param("id") movieId: string) {
-        return `This will return one movie with the id: ${movieId}`;
+    getOne(@Param("id") movieId: string): Movie {
+        return this.moviesService.getOne(movieId);
     }
 
     @Post()
     create(@Body() movieData) {
-        return movieData;
+        return this.moviesService.create(movieData);
     }
 
     @Delete(":id")
     remove(@Param("id") movieId:string) {
-        return `This will delete a movie with the id: ${movieId}`;
+        return this.moviesService.deleteOne(movieId);
     }
 
     @Patch('/:id')  // Put은 모든 리소스를 업데이트. patch는 리소스의 일부분만 업데이트
-    path(@Param('id') movieId: string, @Body() updateData) {
+    patch(@Param('id') movieId: string, @Body() updateData) {
         return {
             updateMovie: movieId,
             ...updateData,
