@@ -7,10 +7,9 @@ import { Board } from './board.entity';
 
 @Module({
   imports: [
-    // TypeOrmModule.forFeature([BoardRepository])
-    TypeOrmModule.forFeature([Board]) // @EntityRepository 데코레이터 deprecated로 인해 변경
+    TypeOrmModule.forFeature([Board])
   ],
   controllers: [BoardsController],
-  providers: [BoardsService, BoardRepository] // @EntityRepository 데코레이터 deprecated로 인해 변경 - repo를 provider로 가짐
+  providers: [BoardsService, BoardRepository]
 })
 export class BoardsModule {}
