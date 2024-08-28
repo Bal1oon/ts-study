@@ -36,14 +36,13 @@ export class BoardsService {
     //         description,
     //         status: BoardStatus.PUBLIC
     //     }
+    //     this.boards.push(board);
+    //     return board
+    // }
 
     createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
         return this.boardRepository.createBoard(createBoardDto);    
     }
-
-    //     this.boards.push(board);
-    //     return board
-    // }
 
     // getBoardById(id: string): Board {
     //     const found = this.boards.find((board) => board.id === id);
@@ -75,4 +74,8 @@ export class BoardsService {
     //     board.status = status;
     //     return board;
     // }
+
+    deleteBoard(id: number): Promise<void> {
+        return this.boardRepository.deleteBoard(id);
+    }
 }
