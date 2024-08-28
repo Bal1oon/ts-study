@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { BoardStatus } from './board-status.enum';
-import { CreaateBoardDto } from './dto/create-board.dto';
+import { CreateBoardDto } from './dto/create-board.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BoardRepository } from './board.repository';
 import { Board } from './board.entity';
@@ -16,7 +16,7 @@ export class BoardsService {
     //     return this.boards;
     // }
 
-    // createBoard(createBoardDto: CreaateBoardDto) {
+    // createBoard(createBoardDto: CreateBoardDto) {
     //     const { title, description } = createBoardDto;
     //     const board: Board = {
     //         id: uuid(),     // 로컬 메모리로 데이터를 저장하고 있어 uuid 임시 사용

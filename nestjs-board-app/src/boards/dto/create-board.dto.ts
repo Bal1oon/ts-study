@@ -1,6 +1,6 @@
 import { IsNotEmpty } from "class-validator";
 
-export class CreaateBoardDto {
+export class CreateBoardDto {
     @IsNotEmpty()
     title: string;
 
