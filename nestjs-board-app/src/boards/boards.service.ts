@@ -28,6 +28,10 @@ export class BoardsService {
     //     return this.boards;
     // }
 
+    getAllBoards(): Promise<Board[]> {
+        return this.boardRepository.getAllBoards();
+    }
+
     // createBoard(createBoardDto: CreateBoardDto) {
     //     const { title, description } = createBoardDto;
     //     const board: Board = {

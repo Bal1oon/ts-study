@@ -15,6 +15,10 @@ export class BoardRepository extends Repository<Board> {
             super(Board, dataSource.createEntityManager());
         }
 
+    async getAllBoards(): Promise<Board[]> {
+        return this.find();
+    }
+    
     async getBoardById(id: number): Promise<Board> {
         const found = await this.findOne({ where: { id } });
 
