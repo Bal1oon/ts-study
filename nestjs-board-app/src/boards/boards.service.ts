@@ -55,13 +55,7 @@ export class BoardsService {
     // }
 
     getBoardById(id: number): Promise<Board> {
-        const found = this.boardRepository.findById(id); // 또는 findOneBy({ id })
-
-        if (!found) {
-            throw new NotFoundException(`Can't find Board with id ${id}`);
-        }
-
-        return found;
+        return this.boardRepository.getBoardById(id);
     }
 
     // deleteBoard(id: string): void {
@@ -69,13 +63,13 @@ export class BoardsService {
     //     this.boards = this.boards.filter((board) => board.id !== found.id);
     // }
 
+    deleteBoard(id: number): Promise<void> {
+        return this.boardRepository.deleteBoard(id);
+    }
+
     // updateBoardStatus(id: string, status: BoardStatus): Board {
     //     const board = this.getBoardById(id);
     //     board.status = status;
     //     return board;
     // }
-
-    deleteBoard(id: number): Promise<void> {
-        return this.boardRepository.deleteBoard(id);
-    }
 }

@@ -15,8 +15,14 @@ export class BoardRepository extends Repository<Board> {
             super(Board, dataSource.createEntityManager());
         }
 
-    async findById(id: number): Promise<Board> {
-        return await this.findOne({ where: { id } });
+    async getBoardById(id: number): Promise<Board> {
+        const found = await this.findOne({ where: { id } });
+
+        if (!found) {
+            throw new NotFoundException(`Can't find Board with id ${id}`);
+        }
+
+        return found;
     }
 
     async createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
