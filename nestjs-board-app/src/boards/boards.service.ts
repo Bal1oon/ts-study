@@ -72,4 +72,8 @@ export class BoardsService {
     //     board.status = status;
     //     return board;
     // }
+
+    updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
+        return this.boardRepository.updateBoardStatus(id, status);
+    }
 }

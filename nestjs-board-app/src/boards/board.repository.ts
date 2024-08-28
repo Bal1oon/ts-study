@@ -46,4 +46,13 @@ export class BoardRepository extends Repository<Board> {
             throw new NotFoundException(`Can't find Board with id ${id}`);
         }
     }
+
+    async updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
+        const board = await this.getBoardById(id);
+
+        board.status = status;
+        await this.save(board);
+
+        return board
+    }
 }
