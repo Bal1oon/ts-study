@@ -4,13 +4,25 @@ import { CreateBoardDto } from './dto/create-board.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BoardRepository } from './board.repository';
 import { Board } from './board.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class BoardsService {
     constructor(
-        @InjectRepository(BoardRepository)
-        private boardRepository: BoardRepository,
+        private readonly boardRepository: BoardRepository
     ) {}
+
+    // @EntityRepository 데코레이터가 작동했던 구 버전
+    // constructor(
+    //     @InjectRepository(BoardRepository)
+    //     private boardRepository: BoardRepository,
+    // ) {}
+
+    // Custom Repository를 사용하지 않는 버전
+    // constructor(
+    //     @InjectRepository(Board)
+    //     private boardRepository: Repository<Board>,
+    // ) {}
 
     // getAllBoards(): Board[] {   // return 값의 타입을 정의하기 위해 :Board[] 를 넣어줌
     //     return this.boards;
@@ -24,6 +36,10 @@ export class BoardsService {
     //         description,
     //         status: BoardStatus.PUBLIC
     //     }
+
+    createBoard(createBoardDto: CreateBoardDto): Promise<Board> {
+        return this.boardRepository.createBoard(createBoardDto);    
+    }
 
     //     this.boards.push(board);
     //     return board
@@ -39,8 +55,8 @@ export class BoardsService {
     //     return found;
     // }
 
-    async getBoardById(id: number): Promise<Board> {
-        const found = await this.boardRepository.findOne({ where: { id }}); // 또는 findOneBy({ id })
+    getBoardById(id: number): Promise<Board> {
+        const found = this.boardRepository.findById(id); // 또는 findOneBy({ id })
 
         if (!found) {
             throw new NotFoundException(`Can't find Board with id ${id}`);
@@ -48,6 +64,7 @@ export class BoardsService {
 
         return found;
     }
+
     // deleteBoard(id: string): void {
     //     const found = this.getBoardById(id);
     //     this.boards = this.boards.filter((board) => board.id !== found.id);
