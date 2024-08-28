@@ -29,4 +29,12 @@ export class BoardsService {
     updateBoardStatus(id: number, status: BoardStatus): Promise<Board> {
         return this.boardRepository.updateBoardStatus(id, status);
     }
+
+    // updateBoardTitle(id: number, title: string): Promise<Board> {
+    //     return this.boardRepository.updateBoardTitle(id, title);
+    // }
+    
+    // updateBoardDescription(id: number, description: string): Promise<Board> {
+    //     return this.boardRepository.updateBoardDescription(id, description);
+    // }
 }

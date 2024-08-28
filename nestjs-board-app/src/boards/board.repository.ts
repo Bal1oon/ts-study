@@ -55,4 +55,22 @@ export class BoardRepository extends Repository<Board> {
 
         return board
     }
+
+    // async updateBoardTitle(id: number, title: string): Promise<Board> {
+    //     const board = await this.getBoardById(id);
+
+    //     board.title = title;
+    //     await this.save(board);
+
+    //     return board;
+    // }
+
+    // async updateBoardDescription(id: number, description: string): Promise<Board> {
+    //     const board = await this.getBoardById(id);
+
+    //     board.description = description;
+    //     await this.save(board);
+
+    //     return board;
+    // }
 }

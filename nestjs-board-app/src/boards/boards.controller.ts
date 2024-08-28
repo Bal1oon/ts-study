@@ -37,4 +37,20 @@ export class BoardsController {
     ) {
         return this.boardsService.updateBoardStatus(id, status);
     }
+
+    // @Patch('/:id/title')
+    // updateBoardTitle(
+    //     @Param('id', ParseIntPipe) id: number,
+    //     @Body('title') title: string
+    // ) {
+    //     return this.boardsService.updateBoardTitle(id, title);
+    // }
+
+    // @Patch('/:id/description')
+    // updateBoardDescription(
+    //     @Param('id', ParseIntPipe) id: number,
+    //     @Body('description') description: string
+    // ) {
+    //     return this.boardsService.updateBoardDescription(id, description);
+    // }
 }
