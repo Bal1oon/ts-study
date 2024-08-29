@@ -16,6 +16,17 @@ export class BoardRepository extends Repository<Board> {
         return this.find();
     }
 
+    async getAllBoardsFromUser(user: User): Promise<Board[]> {
+        // Repository API를 사용해도 됨
+        const query = this.createQueryBuilder('board');
+
+        query.where('board.userId = :userId', { userId: user.id });
+
+        const boards = await query.getMany();
+
+        return boards;
+    }
+
     async getBoardById(id: number): Promise<Board> {
         const found = await this.findOne({ where: { id } });
 

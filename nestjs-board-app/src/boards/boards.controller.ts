@@ -18,6 +18,11 @@ export class BoardsController {
         return this.boardsService.getAllBoards();
     }
 
+    @Get('/user')
+    getAllBoardsFromUser(@GetUser() user: User): Promise<Board[]> {
+        return this.boardsService.getAllBoardsFromUser(user);
+    }
+
     @Get('/:id')
     getBoardById(@Param('id') id: number): Promise<Board> {
         return this.boardsService.getBoardById(id);
